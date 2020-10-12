@@ -17,10 +17,16 @@ repositories {
 }
 
 dependencies {
+
+
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
+//	implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:7.13.0")
+
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

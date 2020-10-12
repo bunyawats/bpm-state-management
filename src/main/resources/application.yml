@@ -1,0 +1,17 @@
+camunda:
+  bpm:
+    auto-deployment-enabled: true
+    deployment-resource-pattern: /dmn/*.dmn, /bpmn/*.bpmn
+    filter:
+      create: show all
+logging:
+  level:
+    com:
+    #            zaxxer:
+    #                hikari: TRACE
+    #                hikari.HikariConfig: DEBUG
+    root: INFO
+management:
+  endpoint:
+    health:
+      show-details: always
