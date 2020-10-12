@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0p2to4z" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.2.0">
+  <bpmn:process id="KK_ONBOARDING" name="KK Onboarding" isExecutable="true">
+    <bpmn:startEvent id="START" name="Start">
+      <bpmn:outgoing>Flow_15yj355</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="FORM_1" name="Form 1">
+      <bpmn:incoming>Flow_15yj355</bpmn:incoming>
+      <bpmn:outgoing>Flow_0d1xb1z</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_15yj355" sourceRef="START" targetRef="FORM_1" />
+    <bpmn:task id="FORM_2" name="Form 2">
+      <bpmn:incoming>Flow_0d1xb1z</bpmn:incoming>
+      <bpmn:outgoing>Flow_1oxalz4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_0d1xb1z" sourceRef="FORM_1" targetRef="FORM_2" />
+    <bpmn:task id="FORM_3" name="Form 3">
+      <bpmn:incoming>Flow_1oxalz4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0905cm7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1oxalz4" sourceRef="FORM_2" targetRef="FORM_3" />
+    <bpmn:exclusiveGateway id="DECISION_1" name="Decision 1">
+      <bpmn:incoming>Flow_0905cm7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cfs7cz</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0q2qicy</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0905cm7" sourceRef="FORM_3" targetRef="DECISION_1" />
+    <bpmn:task id="UNDERWRING" name="Underwriting">
+      <bpmn:incoming>Flow_1cfs7cz</bpmn:incoming>
+      <bpmn:outgoing>Flow_172kbwe</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1cfs7cz" sourceRef="DECISION_1" targetRef="UNDERWRING" />
+    <bpmn:exclusiveGateway id="DECISION_2" name="Decision 2">
+      <bpmn:incoming>Flow_0q2qicy</bpmn:incoming>
+      <bpmn:incoming>Flow_172kbwe</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hnpua5</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0q2qicy" sourceRef="DECISION_1" targetRef="DECISION_2" />
+    <bpmn:sequenceFlow id="Flow_172kbwe" sourceRef="UNDERWRING" targetRef="DECISION_2" />
+    <bpmn:intermediateThrowEvent id="DONE" name="Done">
+      <bpmn:incoming>Flow_0hnpua5</bpmn:incoming>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_0hnpua5" sourceRef="DECISION_2" targetRef="DONE" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="KK_ONBOARDING">
+      <bpmndi:BPMNEdge id="Flow_15yj355_di" bpmnElement="Flow_15yj355">
+        <di:waypoint x="215" y="210" />
+        <di:waypoint x="270" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d1xb1z_di" bpmnElement="Flow_0d1xb1z">
+        <di:waypoint x="370" y="210" />
+        <di:waypoint x="430" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1oxalz4_di" bpmnElement="Flow_1oxalz4">
+        <di:waypoint x="530" y="210" />
+        <di:waypoint x="590" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0905cm7_di" bpmnElement="Flow_0905cm7">
+        <di:waypoint x="690" y="210" />
+        <di:waypoint x="755" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cfs7cz_di" bpmnElement="Flow_1cfs7cz">
+        <di:waypoint x="780" y="185" />
+        <di:waypoint x="780" y="120" />
+        <di:waypoint x="860" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0q2qicy_di" bpmnElement="Flow_0q2qicy">
+        <di:waypoint x="805" y="210" />
+        <di:waypoint x="995" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_172kbwe_di" bpmnElement="Flow_172kbwe">
+        <di:waypoint x="960" y="120" />
+        <di:waypoint x="1020" y="120" />
+        <di:waypoint x="1020" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hnpua5_di" bpmnElement="Flow_0hnpua5">
+        <di:waypoint x="1045" y="210" />
+        <di:waypoint x="1112" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="START">
+        <dc:Bounds x="179" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="185" y="235" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1f27rwk_di" bpmnElement="FORM_1">
+        <dc:Bounds x="270" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08thd9h_di" bpmnElement="FORM_2">
+        <dc:Bounds x="430" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dznvvt_di" bpmnElement="FORM_3">
+        <dc:Bounds x="590" y="170" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0zil7yr_di" bpmnElement="DECISION_1" isMarkerVisible="true">
+        <dc:Bounds x="755" y="185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="754" y="242" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_02ab9k3_di" bpmnElement="DECISION_2" isMarkerVisible="true">
+        <dc:Bounds x="995" y="185" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="996" y="242" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0nrtrs3_di" bpmnElement="DONE">
+        <dc:Bounds x="1112" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1117" y="235" width="27" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1p267et_di" bpmnElement="UNDERWRING">
+        <dc:Bounds x="860" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
