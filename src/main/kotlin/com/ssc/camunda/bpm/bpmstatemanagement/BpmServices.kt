@@ -5,6 +5,7 @@ import org.camunda.bpm.model.bpmn.BpmnModelInstance
 import org.camunda.bpm.model.bpmn.instance.FlowNode
 import org.springframework.stereotype.Service
 
+//ref: https://forum.camunda.org/t/get-preview-next-task/8581/6
 
 @Service
 class BpmServices(private val bpmRepositoryService: RepositoryService) {
