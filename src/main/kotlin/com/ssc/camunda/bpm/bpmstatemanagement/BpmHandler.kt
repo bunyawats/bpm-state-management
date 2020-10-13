@@ -12,9 +12,10 @@ class BpmHandler(private val service: BpmServices){
     fun getDefinition(request: ServerRequest): Mono<ServerResponse> {
 
         val helloBpm = service.loadBpmDefinition()
-        print("Message from service: $helloBpm")
+        println("Message from service: $helloBpm")
 
         val id = request.pathVariable("id")
+        println("part param id : $id")
         return ServerResponse.ok().bodyValue(arrayOf(1, 2, 3))
     }
 

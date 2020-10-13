@@ -1,3 +1,4 @@
+import org.gradle.api.JavaVersion.VERSION_1_8
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -9,7 +10,7 @@ plugins {
 
 group = "com.ssc.camunda.bpm"
 version = "0.0.1-SNAPSHOT"
-//java.sourceCompatibility = JavaVersion.VERSION_1_8
+//java.sourceCompatibility  = VERSION_1_8
 
 repositories {
 	mavenCentral()
@@ -19,15 +20,26 @@ repositories {
 dependencies {
 
 
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
-//	implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:7.13.0")
+	implementation("org.springframework.boot:spring-boot-starter-jdbc")
+	implementation("com.h2database:h2")
+
+	implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:7.14.0")
+	implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:7.14.0")
+	implementation("org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:7.14.0")
 
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test"){
+		exclude( group = "org.junit.vintage", module = "junit-vintage-engine")
+	}
 }
 
 //tasks.withType<Test> {

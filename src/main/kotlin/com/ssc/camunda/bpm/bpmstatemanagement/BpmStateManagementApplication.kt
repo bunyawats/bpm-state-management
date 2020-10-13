@@ -8,5 +8,5 @@ class BpmStateManagementApplication
 
 fun main(args: Array<String>) {
 	runApplication<BpmStateManagementApplication>(*args)
-	print("\n\nHello BpmStateManagementApplication\n\n")
+	println("\nBpmStateManagementApplication  Started\n")
 }
