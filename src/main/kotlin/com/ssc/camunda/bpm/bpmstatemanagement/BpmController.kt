@@ -9,7 +9,7 @@ import kotlin.collections.List
 class BpmController(private val service: BpmServices) {
 
     @GetMapping("/bpmninstance/{processKey}")
-    fun findBpmnDefinition(@PathVariable processKey: String): String {
+    fun findBpmnDefinition(@PathVariable processKey: String): String? {
 
         println("request process key: $processKey")
 

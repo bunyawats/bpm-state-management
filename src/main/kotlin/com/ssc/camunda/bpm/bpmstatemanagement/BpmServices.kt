@@ -1,6 +1,7 @@
 package com.ssc.camunda.bpm.bpmstatemanagement
 
 import org.camunda.bpm.engine.RepositoryService
+import org.camunda.bpm.engine.repository.ProcessDefinition
 import org.camunda.bpm.model.bpmn.BpmnModelInstance
 import org.camunda.bpm.model.bpmn.instance.FlowNode
 import org.springframework.stereotype.Service
@@ -10,41 +11,39 @@ import org.springframework.stereotype.Service
 @Service
 class BpmServices(private val bpmRepositoryService: RepositoryService) {
 
-    companion object {
-        const val PROCESS_KEY = "KK_ONBOARDING"
-    }
-
-    private fun findProcessInstance(processKey: String): BpmnModelInstance? {
-
+    private fun findProcessDefinition(processKey: String): ProcessDefinition?{
         try {
-            val processDefinitionId = bpmRepositoryService.createProcessDefinitionQuery()
+            return bpmRepositoryService.createProcessDefinitionQuery()
                 .apply {
                     processDefinitionKey(processKey)
                     processDefinitionVersion(1)
-                }.singleResult().id
-
-            return bpmRepositoryService.getBpmnModelInstance(processDefinitionId)
-
+                }.singleResult()
         } catch (e: Exception) {
             println(e.message)
         }
         return null
     }
 
-    fun loadBpmDefinition(processKey: String): String {
+    fun loadBpmDefinition(processKey: String): String? {
 
-        return findProcessInstance(processKey).toString()
+        val definitions = findProcessDefinition(processKey)
+        println(" process definition id : ${definitions?.name} ")
+
+        return definitions?.name
     }
 
     fun findNextBpmState(processKey: String, currentState: String): List<String> {
 
         val nextStateList = mutableListOf<String>()
+
         try {
-            val processModel = findProcessInstance(processKey)
-            val flowNode = processModel?.getModelElementById<FlowNode>(currentState)
+            val definitions = findProcessDefinition(processKey)
+            val modelInstance = bpmRepositoryService.getBpmnModelInstance(definitions?.id)
+            val flowNode = modelInstance?.getModelElementById<FlowNode>(currentState)
+
             flowNode?.outgoing?.forEach {
                 println("flow id: ${it.id}")
-                it.target?.let{ node ->
+                it.target?.let { node ->
                     nextStateList.add(node.id)
                 }
             }
