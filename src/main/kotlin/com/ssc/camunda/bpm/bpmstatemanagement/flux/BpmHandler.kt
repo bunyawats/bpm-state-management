@@ -1,4 +1,4 @@
-package com.ssc.camunda.bpm.bpmstatemanagement
+package com.ssc.camunda.bpm.bpmstatemanagement.flux
 
 //import org.springframework.stereotype.Component
 //import org.springframework.web.reactive.function.BodyInserters.fromObject

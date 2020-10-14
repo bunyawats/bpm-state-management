@@ -2,16 +2,19 @@ package com.ssc.camunda.bpm.bpmstatemanagement
 
 import org.camunda.bpm.engine.RepositoryService
 import org.camunda.bpm.engine.repository.ProcessDefinition
-import org.camunda.bpm.model.bpmn.BpmnModelInstance
 import org.camunda.bpm.model.bpmn.instance.FlowNode
 import org.springframework.stereotype.Service
 
 //ref: https://forum.camunda.org/t/get-preview-next-task/8581/6
 
 @Service
-class BpmServices(private val bpmRepositoryService: RepositoryService) {
+class BpmServices(
+    private val bpmRepositoryService: RepositoryService
+) {
 
-    private fun findProcessDefinition(processKey: String): ProcessDefinition?{
+    private fun findProcessDefinition(
+        processKey: String
+    ): ProcessDefinition? {
         try {
             return bpmRepositoryService.createProcessDefinitionQuery()
                 .apply {
@@ -24,7 +27,9 @@ class BpmServices(private val bpmRepositoryService: RepositoryService) {
         return null
     }
 
-    fun loadBpmDefinition(processKey: String): String? {
+    fun loadBpmDefinition(
+        processKey: String
+    ): String? {
 
         val definitions = findProcessDefinition(processKey)
         println(" process definition id : ${definitions?.name} ")
@@ -32,7 +37,10 @@ class BpmServices(private val bpmRepositoryService: RepositoryService) {
         return definitions?.name
     }
 
-    fun findNextBpmState(processKey: String, currentState: String): List<String> {
+    fun findNextBpmState(
+        processKey: String,
+        currentState: String
+    ): List<String> {
 
         val nextStateList = mutableListOf<String>()
 

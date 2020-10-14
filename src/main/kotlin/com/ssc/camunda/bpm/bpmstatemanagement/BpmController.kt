@@ -3,13 +3,15 @@ package com.ssc.camunda.bpm.bpmstatemanagement
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
-import kotlin.collections.List
 
 @RestController
-class BpmController(private val service: BpmServices) {
+class BpmController(
+    private val service: BpmServices) {
 
     @GetMapping("/bpmninstance/{processKey}")
-    fun findBpmnDefinition(@PathVariable processKey: String): String? {
+    fun findBpmnDefinition(
+        @PathVariable processKey: String
+    ): String? {
 
         println("request process key: $processKey")
 

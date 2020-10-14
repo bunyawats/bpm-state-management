@@ -1,4 +1,4 @@
-package com.ssc.camunda.bpm.bpmstatemanagement
+package com.ssc.camunda.bpm.bpmstatemanagement.flux
 
 //import org.springframework.context.annotation.Bean
 //import org.springframework.context.annotation.Configuration
